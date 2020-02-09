@@ -37,11 +37,23 @@ paths:
       responses:
         '200':
           description: OK
+          schema:
+            $ref: '#/definitions/accountsList'
+        '500':
+          description: Error
+          schema:
+            $ref: '#/definitions/errorList'
   /accounts/{account_id}:
     get:
       responses:
         '200':
           description: OK
+          schema:
+            $ref: '#/definitions/accountDetails'
+        '500':
+          description: Error
+          schema:
+            $ref: '#/definitions/errorList'
       parameters:
         - name: account_id
           type: string
