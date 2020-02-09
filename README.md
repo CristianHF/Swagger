@@ -223,8 +223,6 @@ paths:
       security:
         - Client Credentials:
             - accounts_list.read
-      tags:
-        - Accounts
   '/accounts/{account_id}':
     get:
       responses:
