@@ -20,5 +20,29 @@ swagger: "2.0"
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**version**: número de versión del API
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**description**: descripción de lo que hace el API
+```yaml
+info:
+  title: Accounts
+  version: 1.0.0
+  description: Allows get accounts list and account details.
+```
 
 * **paths**: lista de los paths y operaciones de un API
+```yaml
+paths:
+  /accounts:
+    get:
+      responses:
+        '200':
+          description: OK
+  /accounts/{account_id}:
+    get:
+      responses:
+        '200':
+          description: OK
+      parameters:
+        - name: account_id
+          type: string
+          in: path
+          required: true
+```
