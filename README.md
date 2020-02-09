@@ -141,3 +141,56 @@ Para completar las definiciones de objetos, definimos la lista de errores y el e
         description: Error description.
         example: Description
 ```
+
+-----
+
+### Otros objetos Swagger
+
+* **basePath**: si todas las operaciones tienen una parte común al inicio, se puede extraer e indicarlo aquí. Por defecto es una barra.
+```yaml
+basePath: /accounts
+```
+* **securityDefinitions**: aquí se puede indicar el flujo de seguridad OAuth que usa el API para poder consumirla, los campos obligatorios son el tipo, tipo de flujo y la URL que se usaría para obtener el token de acceso, opcionalmente se pueden indicar los scopes en el caso de que cada operacion necesite una autorización diferente. También aquí se puede indicar el API Key.
+```yaml
+securityDefinitions:
+  Client Credentials:
+    type: oauth2
+    description: Client credentials security flow.
+    flow: application
+    scopes:
+      accounts_list.read: Accounts list scope.
+      account_details.read: Account details scope.
+    tokenUrl: 'https://localhost.com/oauth/token'
+  X-Client-Id:
+    type: apiKey
+    in: header
+    name: X-Client-Id
+    description: Client id header
+```
+
+* **security**: cuando está en primer nivel, lo que se hace es indicar cuál va a ser la definición de seguridad común que se va a aplicar a todas las operaciones, en este caso, lo más básico para llamar a un API es el API Key.
+```yaml
+security:
+  - X-Client-Id: []
+```
+Si lo incluimos dentro de la definición de una operación, indicamos el scope para el que se tiene que validar el access token.
+```yaml
+  /accounts:
+    get:
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/accountsList'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/errorList'
+      summary: Accounts list.
+      description: List of accounts.
+      parameters:
+        - $ref: '#/parameters/Authorization'
+      security:
+        - Client Credentials:
+            - accounts_list.read
+```
