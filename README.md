@@ -60,7 +60,7 @@ paths:
           in: path
           required: true
 ```
-En esta parte se deben definir los recursos en un primer nivel y luego el verbo que pueden utilizar en el siguiente (get, post, put, patch, delete,...). Para cada operación se definen además de las diferentes respuestas que puede devolver el API, indicándolo en la etiqueta **schema**, también los parámetros de entrada que conforman la llamada, ya sean de tipo path, query string o body.
+En esta parte se deben definir los recursos en un primer nivel y luego el verbo que pueden utilizar en el siguiente (get, post, put, patch, delete,...). Para cada operación se definen además de las diferentes respuestas que puede devolver, indicándolo en la etiqueta **schema**, también los parámetros de entrada que conforman la llamada, ya sean de tipo path, query string o body en la etiqueta **in** y la obligatoriedad en la etiqueta **required**.
 
 -----
 
