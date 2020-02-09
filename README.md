@@ -188,6 +188,35 @@ Si lo incluimos dentro de la definición de una operación, indicamos el scope p
             $ref: '#/definitions/errorList'
       summary: Accounts list.
       description: List of accounts.
+      security:
+        - Client Credentials:
+            - accounts_list.read
+```
+* **parameters**: si tenemos algún parámetro de entrada que se repita en varias operaciones, podemos definirlo aquí y referenciarlo cada vez que lo necesitemos, así sólo se define una vez. 
+```yaml
+parameters:
+  Authorization:
+    name: Authorization
+    type: string
+    required: true
+    in: header
+    description: Authorization header.
+```
+Esta cabecera la podemos referenciar en cada operación para tener una definición de seguridad completa
+```yaml
+  /accounts:
+    get:
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/accountsList'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/errorList'
+      summary: Accounts list.
+      description: List of accounts.
       parameters:
         - $ref: '#/parameters/Authorization'
       security:
