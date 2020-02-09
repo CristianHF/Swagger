@@ -3,7 +3,7 @@
 * Es el lenguaje en el que se definen las APIs
 * Es un lenguaje comprensible tanto para humanos como para máquinas
 * Estructura de forma muy diferenciada las diferentes partes que componen un API
-* Es un lenguaje para documentar
+* En su mayor parte es un lenguaje para documentar
 * Se guarda como fichero .yml o .yaml
 
 -----
