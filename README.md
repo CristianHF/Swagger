@@ -10,6 +10,9 @@
 
 * **swagger**: versión del lenguaje empleada
 * **info**: información básica del API, contempla 3 campos
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**title**: título del API
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**version**: número de versión del API
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**description**: descripción de lo que hace el API
