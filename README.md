@@ -10,6 +10,9 @@
 Como mínimo, un swagger debe tener obligatoriamente los siguientes elementos
 
 * **swagger**: versión del lenguaje empleada
+```yaml
+swagger: "2.0"
+```
 * **info**: información básica del API, contempla 3 campos
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**title**: título del API
