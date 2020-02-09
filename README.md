@@ -251,3 +251,7 @@ paths:
         - Client Credentials:
             - account_details.read
 ```
+
+### Enlaces
+
+[Editor swagger live](http://editor.swagger.io/). Mientras codificas se va viendo el resultado, también sirve a modo de validador.
