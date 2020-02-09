@@ -6,6 +6,8 @@
 * Es un lenguaje para documentar
 * Se guarda como fichero .yml o .yaml
 
+-----
+
 ### Estructura mínima en un formato Swagger
 Como mínimo, un swagger debe tener obligatoriamente los siguientes elementos
 
@@ -47,6 +49,8 @@ paths:
           required: true
 ```
 
+-----
+
 ### Objeto definitions
 Se usa para definir los tipos de datos que pueden ser consumidos o producidos por el API. Luego en cada operación podemos referenciarlos para incluirlos en la petición o en la respuesta.
 
@@ -80,5 +84,47 @@ accountDetails:
         description: Last time the account was updated.
         format: date
         example: 01/20/2020
-    additionalProperties: false
+```
+Siempre que una propiedad de un objeto, sea otro objeto, debemos referenciarlo con **$ref**, como es el caso del objeto **balance**
+```yaml
+  balance:
+    properties:
+      amount:
+        type: number
+        description: Amount.
+        format: double
+        example: 10
+      currency:
+        type: string
+        description: Currency.
+        example: EUR
+    description: "Object that represent account's balances. Includes amount and currency."
+```
+Para completar las definiciones de objetos, definimos la lista de errores y el error
+```yaml
+  errorList:
+    type: object
+    properties:
+      errors:
+        type: array
+        items:
+          $ref: '#/definitions/error'
+  error:
+    properties:
+      code:
+        type: string
+        description: Error code.
+        example: 'XXX'
+      message:
+        type: string
+        description: Error message.
+        example: Message
+      level:
+        type: string
+        description: Error level.
+        example: Error
+      description:
+        type: string
+        description: Error description.
+        example: Description
 ```
