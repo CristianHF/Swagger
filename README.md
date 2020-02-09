@@ -46,3 +46,39 @@ paths:
           in: path
           required: true
 ```
+
+### Objeto definitions
+Se usa para definir los tipos de datos que pueden ser consumidos o producidos por el API. Luego en cada operación podemos referenciarlos para incluirlos en la petición o en la respuesta.
+
+Por ejemplo, si definimos un objeto que de respuesta a la operación de listado de cuentas, una de sus propiedades debe ser de tipo lista (array) y además hay que indicar de que tipo serán los elementos de esa lista.
+```yaml
+definitions:
+  accountsList:
+    properties:
+      accountsList:
+        type: array
+        items:
+          $ref: '#/definitions/accountDetails'
+```
+Aunque en este punto el objeto **accountDetails** aún no está definido, no importa, se puede definir justo después o en cualquier otro sitio siempre dentro del objeto **definitions**
+```yaml
+accountDetails:
+    properties:
+      accountId:
+        type: string
+        description: Unique account identifier.
+        example: '1234567890'
+      alias:
+        type: string
+        description: Simple name for identify each account.
+        example: MyAccount1
+      mainBalance:
+        $ref: '#/definitions/balance'
+        description: "Account's main balance."
+      lastUpdateDate:
+        type: string
+        description: Last time the account was updated.
+        format: date
+        example: 01/20/2020
+    additionalProperties: false
+```
