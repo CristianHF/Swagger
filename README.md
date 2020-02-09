@@ -204,6 +204,7 @@ parameters:
 ```
 Esta cabecera la podemos referenciar en cada operación para tener una definición de seguridad completa
 ```yaml
+paths:
   /accounts:
     get:
       responses:
@@ -222,4 +223,33 @@ Esta cabecera la podemos referenciar en cada operación para tener una definici�
       security:
         - Client Credentials:
             - accounts_list.read
+      tags:
+        - Accounts
+  '/accounts/{account_id}':
+    get:
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/accountDetails'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/errorList'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/errorList'
+      summary: Account details.
+      description: Details of an account.
+      parameters:
+        - $ref: '#/parameters/Authorization'
+        - name: account_id
+          type: string
+          required: true
+          in: path
+          description: Unique account identifier.
+      security:
+        - Client Credentials:
+            - account_details.read
 ```
